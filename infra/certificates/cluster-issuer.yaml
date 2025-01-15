@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-issuer-dev
+spec:
+  acme:
+    email: alex@jmetio.de
+    server: https://acme-v02.api.letsencrypt.org/directory # alternative for test first https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-issuer-dev-key
+    solvers:
+    - dns01:
+        cloudflare:
+          email: email@example.com # Change this to your cloudflare email
+          apiTokenSecretRef:
+            name: <SECRET_NAME>
+            key: api-token

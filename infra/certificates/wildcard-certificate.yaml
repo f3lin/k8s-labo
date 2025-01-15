@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-certificate-dev
+  namespace: dev # Change this to your namespace
+spec:
+  secretName: wildcard-certificate-dev-key
+  issuerRef:
+    name: letsencrypt-issuer-dev # Change this to your cluster issuer name
+    kind: ClusterIssuer
+  commonName: "*.dev.example.com" # Change this to your wildcard domain
+  dnsNames:
+  - "dev.example.com" # Make shure to point this domain to your ingress controller
+  - "*.dev.example.com"
+
+
